@@ -1,0 +1,73 @@
+{% extends 'admins/layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Admin All-Category</title>
+
+<!-- {% include 'products/header.html' %} -->
+
+{%endblock%}
+
+{% block main_content %}
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-center">
+            <div class="col-md-12">
+
+                {% for msg in messages %}
+                {% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                <div class="alert alert-success">
+                    {{ msg }}
+                </div>
+        
+                {% endif %}
+        
+                {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-danger">
+                    {{ msg }}
+                </div>
+        
+                {% endif %}
+        
+        
+                {% endfor %}
+                
+                <table class="table table-bordered table-striped table-light">
+                <thead>
+                <tr>
+                    <th>Category Name</th>
+                   
+                    <th class="col-md-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category_show in categories %}
+
+                <tr>
+                    <td>{{ category_show.category_name}}</td>
+                    
+                    <td><img src="/{{product_show.image}}" alt="" width="150"></td>
+                    <td>
+                        <a href="/products/updatecategory/{{category_show.id}}" class="btn btn-primary">
+                            <i class="fas fa-edit"></i>
+                    </a>
+                    &nbsp;
+                    <a href="/products/deletecategory/{{category_show.id}}" class="btn btn-danger" onclick="return confirm('Are you sure want to delete this category ?')">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    </td>
+                </tr>
+        
+                {%endfor %}
+
+            </tbody>
+            </div>
+        </table>
+        </div>
+    </div>
+    
+    
+    <!-- static files render -->
+    <!-- <img src="{% static 'images/15.jpg' %}" alt="" width="500"> -->
+
+    {% endblock %}

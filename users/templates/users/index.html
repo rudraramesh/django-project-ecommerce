@@ -1,0 +1,89 @@
+<style>
+    .carousel-item img {
+        height: 550px;
+    }
+    .card-img{
+        overflow: hidden;
+    }
+    .card-img:hover img{
+        transform: scale(1.5);
+    }
+    .card-img img{
+        transition: all 2s;
+        cursor: pointer;
+        height: 200px;
+        
+    }
+</style>
+
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>Ecommerce - homepage</title>
+
+{%endblock%}
+
+{% block main_content %}
+<!-- carasol start  -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/static/images/img3.png"
+                class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://cdn.business2community.com/wp-content/uploads/2015/08/9_steps_Hero.jpg.jpg"
+                class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="https://cdn.shopify.com/s/files/1/0265/8933/1530/files/Banner-600x350-Collection-1.png?v=1569218551"
+                class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- carasol end -->
+
+<!-- card start  -->
+<div class="container-fluid">
+    <p class="display-6 text-center mt-5 font-weight-bold">Shop Now</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-1">
+        {% for product in products %}
+        <div class="col">
+            <div class="card shadow-lg">
+                <div class="card-img">
+                    <img src="/{{product.image}}"
+                        class="card-img-top" alt="{{product.product_name}}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{product.product_name}}</h5>
+                    <h6 class="card-title">Rs.{{product.product_price}}</h6>
+                    <a href="" class="btn btn-success">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+       
+    </div>
+</div>
+<!-- card end -->
+
+
+{% endblock %}
