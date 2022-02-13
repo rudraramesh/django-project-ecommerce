@@ -71,3 +71,10 @@ def homepage(request):
         'products':products
     }
     return render(request, 'users/index.html',context)
+
+def productpage(request):
+    products = Product.objects.all().order_by('-id')
+    context = {
+        'products':products
+    }
+    return render(request, 'users/products.html',context)
