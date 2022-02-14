@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from . forms import LoginForm
 from products.models import *
-
+from . filters import ProductFilter
 
 
 def register_user(request):
@@ -68,13 +68,17 @@ def logout_user(request):
 def homepage(request):
     products = Product.objects.all().order_by('-id')[:8]
     context = {
-        'products':products
+        'products': products
     }
-    return render(request, 'users/index.html',context)
+    return render(request, 'users/index.html', context)
+
 
 def productpage(request):
     products = Product.objects.all().order_by('-id')
+    product_filter = ProductFilter(request.GET, queryset=products)
+    product_final = product_filter.qs
     context = {
-        'products':products
+        'products': product_final,
+        'product_filter': product_filter
     }
-    return render(request, 'users/products.html',context)
+    return render(request, 'users/products.html', context)

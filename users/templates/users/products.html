@@ -1,15 +1,17 @@
 <style>
-    .card-img{
+    .card-img {
         overflow: hidden;
     }
-    .card-img:hover img{
+
+    .card-img:hover img {
         transform: scale(1.5);
     }
-    .card-img img{
+
+    .card-img img {
         transition: all 2s;
         cursor: pointer;
         height: 200px;
-        
+
     }
 </style>
 
@@ -22,16 +24,22 @@
 
 {% block main_content %}
 
+
+
 <!-- card start  -->
 <div class="container-fluid">
+    <form action="" class="from" method="get">
+        {{product_filter.form}}
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
     <p class="display-6 text-center mt-5 font-weight-bold">Shop Now</p>
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-1">
+
         {% for product in products %}
         <div class="col">
             <div class="card shadow-lg">
                 <div class="card-img">
-                    <img src="/{{product.image}}"
-                        class="card-img-top" alt="{{product.product_name}}">
+                    <img src="/{{product.image}}" class="card-img-top" alt="{{product.product_name}}">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{product.product_name}}</h5>
@@ -41,7 +49,7 @@
             </div>
         </div>
         {% endfor %}
-       
+
     </div>
 </div>
 <!-- card end -->
