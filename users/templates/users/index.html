@@ -17,6 +17,7 @@
 </style>
 
 {% extends 'layout.html' %}
+{% load static %}
 
 {% block title %}
 <title>Ecommerce - homepage</title>
@@ -36,7 +37,7 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="/static/images/img3.png"
+            <img src="{% static 'images/img2.png' %}"
                 class="d-block w-100" alt="...">
         </div>
         <div class="carousel-item">
